@@ -1,7 +1,9 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-// 👇 CORRIGE ESTA RUTA si es necesario para apuntar al archivo correcto
 import { GifsService } from '../../../../services/gifs.service';
+
+// 👇 ASEGÚRATE DE QUE ESTA LÍNEA ESTÉ PRESENTE Y LA RUTA SEA CORRECTA
+import { GifsSideMenuOptionComponent } from '../../../gifs-side-menu-option/gifs-side-menu-option.component'; 
 
 
 @Component({
@@ -9,7 +11,7 @@ import { GifsService } from '../../../../services/gifs.service';
   standalone: true,
   imports: [
     CommonModule,
-    GifsSideMenuOptionsComponent // <-- CORREGIDO: Importa el componente hijo
+    GifsSideMenuOptionComponent // <-- ASEGÚRATE DE QUE AQUÍ DICE "Option" (singular)
   ],
   templateUrl: './gifs-side-menu-options.component.html',
 })

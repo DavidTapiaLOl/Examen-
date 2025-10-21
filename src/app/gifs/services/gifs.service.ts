@@ -67,20 +67,29 @@ export class GifsService {
   }
 
   public searchTag(tag: string): void {
-    if (tag.trim().length === 0) return;
-    
-    this.organizeHistory(tag);
-    this._isLoading.set(true); // Activa el indicador de carga
+  if (tag.trim().length === 0) return;
 
-    const params = new HttpParams()
-      .set('api_key', this.apiKey)
-      .set('q', tag)
-      .set('limit', '12'); // Traemos 12 GIFs
+  this.organizeHistory(tag);
+  this._isLoading.set(true); 
 
-    this.http.get<GiphyResponse>(`${this.serviceUrl}/search`, { params })
-      .subscribe(resp => {
+  const params = new HttpParams()
+    .set('api_key', this.apiKey)
+    .set('q', tag)
+    .set('limit', '12'); 
+
+  this.http.get<GiphyResponse>(`${this.serviceUrl}/search`, { params })
+    .subscribe({ // <--- Usa un objeto para next y error
+      next: (resp) => {
+        console.log('Respuesta de la API:', resp); // <-- Log para ver la respuesta
         this._gifList.set(resp.data);
-        this._isLoading.set(false); // Desactiva el indicador
-      });
-  }
+        console.log('Signal _gifList actualizado:', this._gifList()); // <-- Log para ver el signal
+        this._isLoading.set(false); 
+      },
+      error: (err) => { // <--- Añade manejo de errores
+        console.error('Error en la llamada API:', err);
+        this._isLoading.set(false); // Asegúrate de quitar el loading
+        this._gifList.set([]); // Opcional: limpiar la lista en caso de error
+      }
+    });
+}
 }
