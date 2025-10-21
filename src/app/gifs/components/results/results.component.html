@@ -1,0 +1,20 @@
+@if (gifsService.isLoading()) {
+  <div class="flex justify-center items-center h-64">
+    <p class="text-xl text-gray-500">Cargando...</p>
+  </div>
+} @else {
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+    
+    @for (gif of gifsService.gifList(); track gif.id) {
+      <app-card [gif]="gif"></app-card>
+    }
+
+  </div>
+
+  @if (gifsService.gifList().length === 0 && !gifsService.isLoading()) {
+    <div class="flex justify-center items-center h-64">
+      <p class="text-xl text-gray-500">No hay resultados. ¡Intenta otra búsqueda!</p>
+    </div>
+  }
+}

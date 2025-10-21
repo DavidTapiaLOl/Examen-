@@ -6,16 +6,17 @@
       id="menu"
       class="w-[220px] bg-gray-900 min-h-screen z-10 text-slate-300 fixed left-0 h-screen overflow-y-scroll"
     >
-      
-
-     <app-side-menu/>
-
+      <app-side-menu/>
     </div>
 
-    <div class="ml-[220px] px-4 flex flex-col w-full h-full text-slate-800">
-      <router-outlet></router-outlet>
+    <div class="ml-[220px] flex flex-col w-full h-full"> 
+      <header class="p-4 bg-white shadow sticky top-0 z-5 text-slate-800"> 
+        <app-search-box></app-search-box> 
+      </header>
+
+      <main class="flex-1 p-4 text-slate-800"> 
+        <router-outlet></router-outlet>
+      </main>
     </div>
-
-
   </div>
 </div>
