@@ -1,1 +1,25 @@
-<p>trending-page works!</p>,
+<div *@ngIf="isLoading()" class="text-center p-8">
+  <p class="text-lg text-gray-400">Cargando GIFs de tendencia...</p>
+  </div>
+
+<div *@If="!isLoading() && gifList().length > 0" 
+     class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
+  
+  <div *@ngFor="let gif of gifList()" 
+       class="bg-gray-800 rounded-lg shadow-xl overflow-hidden transform hover:scale-[1.02] transition-transform duration-300">
+    
+    <div class="w-full aspect-video"> 
+      <img [src]="gif.images.fixed_height.url" 
+           [alt]="gif.title" 
+           class="w-full h-full object-cover">
+    </div>
+
+    <div class="p-3">
+      <p class="text-sm font-semibold text-white truncate">{{ gif.title || 'GIF sin título' }}</p>
+    </div>
+  </div>
+</div>
+
+<div *@ngIf="!isLoading() && gifList().length === 0" class="text-center p-8">
+  <p class="text-lg text-gray-400">No se encontraron GIFs de tendencia.</p>
+</div>

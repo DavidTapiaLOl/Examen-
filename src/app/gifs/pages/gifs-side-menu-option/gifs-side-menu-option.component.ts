@@ -10,8 +10,8 @@ import { RouterModule } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GifsSideMenuOptionComponent { // <-- Nombre en singular
-  @Input({ required: true }) public title!: string;
+ /*  @Input({ required: true }) public title!: string;
   @Input({ required: true }) public subtitle!: string;
   @Input({ required: true }) public icon!: string;
-  @Input({ required: true }) public router!: string;
+  @Input({ required: true }) public router!: string; */
 }

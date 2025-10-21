@@ -31,6 +31,31 @@ export class GifsService {
 
   // --- Efectos (Effects) ---
 
+  public getTrendingGifs(): void {
+    this._isLoading.set(true); 
+
+    const params = new HttpParams()
+      .set('api_key', this.apiKey)
+      // Puedes ajustar el límite si quieres más o menos gifs
+      .set('limit', '25'); 
+
+    // El endpoint para trending es 'trending', no 'search'
+    this.http.get<GiphyResponse>(`${this.serviceUrl}/trending`, { params })
+      .subscribe({
+        next: (resp) => {
+          console.log('Respuesta de Trending API:', resp);
+          // Actualiza la lista principal de GIFs con los resultados de trending
+          this._gifList.set(resp.data); 
+          this._isLoading.set(false); 
+        },
+        error: (err) => {
+          console.error('Error al obtener Trending Gifs:', err);
+          this._isLoading.set(false);
+          this._gifList.set([]); 
+        }
+      });
+  }
+
   // effect() para guardar en LocalStorage cuando el historial cambie 
   private saveToLocalStorage = effect(() => {
     localStorage.setItem('gifHistory', JSON.stringify(this._history()));

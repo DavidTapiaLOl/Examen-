@@ -8,6 +8,7 @@ export interface GiphyResponse {
 }
 
 export interface Gif {
+url: any;
   id:     string;
   title:  string;
   images: {

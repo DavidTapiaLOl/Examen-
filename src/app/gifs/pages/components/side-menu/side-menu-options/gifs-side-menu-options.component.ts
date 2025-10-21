@@ -4,6 +4,7 @@ import { GifsService } from '../../../../services/gifs.service';
 
 // 👇 ASEGÚRATE DE QUE ESTA LÍNEA ESTÉ PRESENTE Y LA RUTA SEA CORRECTA
 import { GifsSideMenuOptionComponent } from '../../../gifs-side-menu-option/gifs-side-menu-option.component'; 
+import { RouterLink } from '@angular/router';
 
 
 @Component({
@@ -11,7 +12,8 @@ import { GifsSideMenuOptionComponent } from '../../../gifs-side-menu-option/gifs
   standalone: true,
   imports: [
     CommonModule,
-    GifsSideMenuOptionComponent // <-- ASEGÚRATE DE QUE AQUÍ DICE "Option" (singular)
+    GifsSideMenuOptionComponent,
+    RouterLink // <-- ASEGÚRATE DE QUE AQUÍ DICE "Option" (singular)
   ],
   templateUrl: './gifs-side-menu-options.component.html',
 })
@@ -22,8 +24,8 @@ export class GifsSideMenuOptionsComponent {
   // Tus opciones de menú estáticas (Dashboard, Trending, Search)
   public menuOptions = [
     { icon: 'fa-solid fa-gauge', title: 'Dashboard', subtitle: 'Data and stats', router: '/dashboard' },
-    { icon: 'fa-solid fa-chart-line', title: 'Trending', subtitle: 'The best gifs', router: '/trending' },
-    { icon: 'fa-solid fa-magnifying-glass', title: 'Search', subtitle: 'Find your gifs', router: '/search' },
+    { icon: 'fa-solid fa-chart-line', title: 'Trending', subtitle: 'The best gifs', router: 'trending' },
+    { icon: 'fa-brands fa-searchengin', title: 'Search', subtitle: 'Find your gifs', router: 'search' },
   ];
 
   // Método para buscar desde el historial

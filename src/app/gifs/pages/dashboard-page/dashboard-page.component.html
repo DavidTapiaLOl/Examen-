@@ -32,6 +32,7 @@
       @for( gif of gifsService.gifList(); track gif.id ) {
         
         <div class="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl">
+          {{gif.title}}
             <img
                 [src]="gif.images.downsized_medium.url"
                 [alt]="gif.id" 
