@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ResultsComponent } from '../../components/results/results.component';
+import { GifsService } from '../../services/gifs.service';
 
 @Component({
   selector: 'app-search-page', // <-- Corregí el selector (era app-search-pge)
@@ -8,4 +9,6 @@ import { ResultsComponent } from '../../components/results/results.component';
   templateUrl: './search-page.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export default class SearchPageComponent { }
+export default class SearchPageComponent {
+  public gifsService = inject(GifsService)
+ }
