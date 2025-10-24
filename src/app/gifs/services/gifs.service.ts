@@ -1,19 +1,21 @@
 import { Injectable, effect, inject, signal } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Gif, GiphyResponse } from '../interfaces/giphy'; // (Crearemos esta interfaz)
+import { environment } from '@environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GifsService {
+  envs = environment;
 
   // Dependencias
   private http = inject(HttpClient);
   
   // --- Claves y Endpoints ---
   // TODO: Reemplaza esto con tu propia API Key de Giphy
-  private apiKey: string = 'JecLl0Pc5P9OYdMjWvtzDPKusnFCzfUa'; 
-  private serviceUrl: string = 'https://api.giphy.com/v1/gifs';
+  private apiKey: string = this.envs.giphyApiKey; 
+  private serviceUrl: string = this.envs.giphyUrl;
 
   // --- Estado con Signals ---
   
